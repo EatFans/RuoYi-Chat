@@ -1,8 +1,8 @@
 <p align="center">
 	<img alt="logo" src="https://oscimg.oschina.net/oscnet/up-d3d0a9303e11d522a06cd263f3079027715.png">
 </p>
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">RuoYi-Chat v3.9.0</h1>
-<h4 align="center">基于RuoYi-Vue框架扩展的实时聊天通讯模块</h4>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">RuoYi-Chat</h1>
+<h4 align="center">基于RuoYi-Vue框架扩展开发的实时聊天通讯模块功能</h4>
 <p align="center">
 	<!-- <a href="https://gitee.com/y_project/RuoYi-Vue/stargazers"><img src="https://gitee.com/y_project/RuoYi-Vue/badge/star.svg?theme=dark"></a> -->
 	<a href="https://gitee.com/y_project/RuoYi-Vue"><img src="https://img.shields.io/badge/RuoYi-v3.9.0-brightgreen.svg"></a>
@@ -11,7 +11,7 @@
 
 ## 项目简介
 
-RuoYi-Chat 是基于若依(RuoYi-Vue)前后端分离框架扩展开发的实时聊天通讯模块，专为小程序、客服系统、内部沟通等场景提供便捷的实时聊天功能。
+RuoYi-Chat 是基于若依(RuoYi-Vue)前后端分离框架扩展开发的实时聊天通讯模块，专为小程序、客服系统、内部沟通等场景提供便捷的实时聊天功能。该项目在若依基础上，新增了聊天模块的功能，同时保留了若依的原有功能，如用户管理、角色管理、菜单管理、参数配置等。
 
 ### 🚀 核心特性
 
