@@ -14,6 +14,17 @@ ruoyi:
   # 验证码类型 math 数字计算 char 字符验证
   captchaType: math
 
+# 聊天模块配置
+chat:
+  netty:
+    port: 9999
+    boss-threads: 1
+    worker-threads: 8
+    max-frame-size: 65536
+  message:
+    max-content-length: 10240
+    history-limit: 100
+
 # 开发环境配置
 server:
   # 服务器的HTTP端口，默认为8080
