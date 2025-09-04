@@ -1,95 +1,224 @@
 <p align="center">
 	<img alt="logo" src="https://oscimg.oschina.net/oscnet/up-d3d0a9303e11d522a06cd263f3079027715.png">
 </p>
-<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">RuoYi v3.9.0</h1>
-<h4 align="center">基于SpringBoot+Vue前后端分离的Java快速开发框架</h4>
+<h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">RuoYi-Chat v3.9.0</h1>
+<h4 align="center">基于RuoYi-Vue框架扩展的实时聊天通讯模块</h4>
 <p align="center">
 	<a href="https://gitee.com/y_project/RuoYi-Vue/stargazers"><img src="https://gitee.com/y_project/RuoYi-Vue/badge/star.svg?theme=dark"></a>
 	<a href="https://gitee.com/y_project/RuoYi-Vue"><img src="https://img.shields.io/badge/RuoYi-v3.9.0-brightgreen.svg"></a>
 	<a href="https://gitee.com/y_project/RuoYi-Vue/blob/master/LICENSE"><img src="https://img.shields.io/github/license/mashape/apistatus.svg"></a>
 </p>
 
-## 平台简介
+## 项目简介
 
-若依是一套全部开源的快速开发平台，毫无保留给个人及企业免费使用。
+RuoYi-Chat 是基于若依(RuoYi-Vue)前后端分离框架扩展开发的实时聊天通讯模块，专为小程序、客服系统、内部沟通等场景提供便捷的实时聊天功能。
 
-* 前端采用Vue、Element UI。
-* 后端采用Spring Boot、Spring Security、Redis & Jwt。
-* 权限认证使用Jwt，支持多终端认证系统。
-* 支持加载动态权限菜单，多方式轻松权限控制。
-* 高效率开发，使用代码生成器可以一键生成前后端代码。
-* 提供了技术栈（[Vue3](https://v3.cn.vuejs.org) [Element Plus](https://element-plus.org/zh-CN) [Vite](https://cn.vitejs.dev)）版本[RuoYi-Vue3](https://gitcode.com/yangzongzhuan/RuoYi-Vue3)，保持同步更新。
-* 提供了单应用版本[RuoYi-Vue-fast](https://gitcode.com/yangzongzhuan/RuoYi-Vue-fast)，Oracle版本[RuoYi-Vue-Oracle](https://gitcode.com/yangzongzhuan/RuoYi-Vue-Oracle)，保持同步更新。
-* 不分离版本，请移步[RuoYi](https://gitee.com/y_project/RuoYi)，微服务版本，请移步[RuoYi-Cloud](https://gitee.com/y_project/RuoYi-Cloud)
-* 阿里云折扣场：[点我进入](http://aly.ruoyi.vip)，腾讯云秒杀场：[点我进入](http://txy.ruoyi.vip)&nbsp;&nbsp;
+### 🚀 核心特性
 
-## 内置功能
+* **基于RuoYi-Vue框架**：完全继承若依框架的用户权限体系和技术架构
+* **实时通讯**：基于WebSocket实现的高性能实时消息推送
+* **多场景支持**：支持单聊、群聊、客服会话等多种聊天场景
+* **小程序友好**：提供完整的小程序端聊天解决方案
+* **客服系统**：内置智能客服分配和会话管理功能
+* **多媒体消息**：支持文本、图片、文件、表情等多种消息类型
+* **移动端适配**：响应式设计，完美适配PC端和移动端
 
-1.  用户管理：用户是系统操作者，该功能主要完成系统用户配置。
-2.  部门管理：配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。
-3.  岗位管理：配置系统用户所属担任职务。
-4.  菜单管理：配置系统菜单，操作权限，按钮权限标识等。
-5.  角色管理：角色菜单权限分配、设置角色按机构进行数据范围权限划分。
-6.  字典管理：对系统中经常使用的一些较为固定的数据进行维护。
-7.  参数管理：对系统动态配置常用参数。
-8.  通知公告：系统通知公告信息发布维护。
-9.  操作日志：系统正常操作日志记录和查询；系统异常信息日志记录和查询。
-10. 登录日志：系统登录日志记录查询包含登录异常。
-11. 在线用户：当前系统中活跃用户状态监控。
-12. 定时任务：在线（添加、修改、删除)任务调度包含执行结果日志。
-13. 代码生成：前后端代码的生成（java、html、xml、sql）支持CRUD下载 。
-14. 系统接口：根据业务代码自动生成相关的api接口文档。
-15. 服务监控：监视当前系统CPU、内存、磁盘、堆栈等相关信息。
-16. 缓存监控：对系统的缓存信息查询，命令统计等。
-17. 在线构建器：拖动表单元素生成相应的HTML代码。
-18. 连接池监视：监视当前系统数据库连接池状态，可进行分析SQL找出系统性能瓶颈。
+### 🛠 技术栈
 
-## 在线体验
+* **前端**：Vue 2.6.12 + Element UI + WebSocket
+* **后端**：Spring Boot + Spring WebSocket + Redis + MyBatis
+* **数据库**：MySQL 5.7+
+* **缓存**：Redis（消息缓存、在线用户管理）
+* **认证**：JWT + Spring Security（复用RuoYi权限体系）
 
-- admin/admin123  
-- 陆陆续续收到一些打赏，为了更好的体验已用于演示服务器升级。谢谢各位小伙伴。
+## 功能模块
 
-演示地址：http://vue.ruoyi.vip  
-文档地址：http://doc.ruoyi.vip
+### 📱 聊天功能
+1. **实时消息**：基于WebSocket的实时消息收发
+2. **消息类型**：文本、图片、文件、表情包等多媒体消息
+3. **消息状态**：已发送、已送达、已读等状态管理
+4. **消息撤回**：支持消息撤回功能
+5. **@提醒**：群聊中的@用户提醒功能
+6. **消息搜索**：聊天记录全文搜索
 
-## 演示图
+### 👥 会话管理
+7. **单聊会话**：一对一私人聊天
+8. **群聊管理**：群组创建、成员管理、权限控制
+9. **客服会话**：智能客服分配和排队机制
+10. **会话列表**：未读消息提醒、最后消息预览
+11. **聊天记录**：完整的聊天历史记录存储和查询
 
-<table>
-    <tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/cd1f90be5f2684f4560c9519c0f2a232ee8.jpg"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/1cbcf0e6f257c7d3a063c0e3f2ff989e4b3.jpg"/></td>
-    </tr>
-    <tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-8074972883b5ba0622e13246738ebba237a.png"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-9f88719cdfca9af2e58b352a20e23d43b12.png"/></td>
-    </tr>
-    <tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-39bf2584ec3a529b0d5a3b70d15c9b37646.png"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-936ec82d1f4872e1bc980927654b6007307.png"/></td>
-    </tr>
-	<tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-b2d62ceb95d2dd9b3fbe157bb70d26001e9.png"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-d67451d308b7a79ad6819723396f7c3d77a.png"/></td>
-    </tr>	 
-    <tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/5e8c387724954459291aafd5eb52b456f53.jpg"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/644e78da53c2e92a95dfda4f76e6d117c4b.jpg"/></td>
-    </tr>
-	<tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-8370a0d02977eebf6dbf854c8450293c937.png"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-49003ed83f60f633e7153609a53a2b644f7.png"/></td>
-    </tr>
-	<tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-d4fe726319ece268d4746602c39cffc0621.png"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-c195234bbcd30be6927f037a6755e6ab69c.png"/></td>
-    </tr>
-    <tr>
-        <td><img src="https://oscimg.oschina.net/oscnet/b6115bc8c31de52951982e509930b20684a.jpg"/></td>
-        <td><img src="https://oscimg.oschina.net/oscnet/up-5e4daac0bb59612c5038448acbcef235e3a.png"/></td>
-    </tr>
-</table>
+### 🎯 客服系统
+12. **客服分配**：智能客服分配算法
+13. **会话转接**：客服之间的会话转接功能
+14. **快捷回复**：预设常用回复模板
+15. **服务评价**：客户服务满意度评价
+16. **工作统计**：客服工作量和效率统计
+
+### 📊 系统管理
+17. **在线用户**：实时在线用户监控
+18. **聊天室管理**：聊天室创建、编辑、删除
+19. **消息审核**：敏感词过滤和消息审核
+20. **系统通知**：系统公告和通知推送
+
+## 应用场景
+
+### 🏢 企业内部沟通
+- 部门内部交流
+- 项目协作沟通
+- 公司公告通知
+- 在线会议讨论
+
+### 🛒 电商客服系统
+- 商品咨询服务
+- 售后问题处理
+- 订单状态查询
+- 投诉建议收集
+
+### 📱 小程序聊天
+- 用户社交互动
+- 商家客户服务
+- 社区交流讨论
+- 活动群组管理
+
+### 🎓 在线教育
+- 师生在线答疑
+- 学习小组讨论
+- 课程通知发布
+- 作业提交反馈
+
+## 快速开始
+
+### 环境要求
+- JDK 1.8+
+- MySQL 5.7+
+- Redis 3.0+
+- Node.js 12+
+- Maven 3.6+
+
+### 安装部署
+
+1. **克隆项目**
+```bash
+git clone https://github.com/your-username/RuoYi-Chat.git
+cd RuoYi-Chat
+```
+
+2. **数据库初始化**
+```sql
+-- 导入基础数据
+source sql/ry_20250522.sql
+-- 导入聊天模块数据
+source sql/ruoyi_chat.sql
+```
+
+3. **后端启动**
+```bash
+# 修改数据库配置
+vim ruoyi-admin/src/main/resources/application.yml
+
+# 启动后端服务
+mvn clean install
+java -jar ruoyi-admin/target/ruoyi-admin.jar
+```
+
+4. **前端启动**
+```bash
+cd ruoyi-ui
+npm install
+npm run dev
+```
+
+### 配置说明
+
+```yaml
+# application.yml 聊天模块配置
+chat:
+  websocket:
+    path: /websocket/chat
+    allowed-origins: "*"
+  message:
+    max-size: 1024
+    history-days: 30
+  file:
+    upload-path: ${ruoyi.profile}/chat/files
+    max-size: 10MB
+```
+
+## 项目结构
 
 
-## 若依前后端分离交流群
+## 开发指南
 
-QQ群： [![加入QQ群](https://img.shields.io/badge/已满-937441-blue.svg)](https://jq.qq.com/?_wv=1027&k=5bVB1og) [![加入QQ群](https://img.shields.io/badge/已满-887144332-blue.svg)](https://jq.qq.com/?_wv=1027&k=5eiA4DH) [![加入QQ群](https://img.shields.io/badge/已满-180251782-blue.svg)](https://jq.qq.com/?_wv=1027&k=5AxMKlC) [![加入QQ群](https://img.shields.io/badge/已满-104180207-blue.svg)](https://jq.qq.com/?_wv=1027&k=51G72yr) [![加入QQ群](https://img.shields.io/badge/已满-186866453-blue.svg)](https://jq.qq.com/?_wv=1027&k=VvjN2nvu) [![加入QQ群](https://img.shields.io/badge/已满-201396349-blue.svg)](https://jq.qq.com/?_wv=1027&k=5vYAqA05) [![加入QQ群](https://img.shields.io/badge/已满-101456076-blue.svg)](https://jq.qq.com/?_wv=1027&k=kOIINEb5) [![加入QQ群](https://img.shields.io/badge/已满-101539465-blue.svg)](https://jq.qq.com/?_wv=1027&k=UKtX5jhs) [![加入QQ群](https://img.shields.io/badge/已满-264312783-blue.svg)](https://jq.qq.com/?_wv=1027&k=EI9an8lJ) [![加入QQ群](https://img.shields.io/badge/已满-167385320-blue.svg)](https://jq.qq.com/?_wv=1027&k=SWCtLnMz) [![加入QQ群](https://img.shields.io/badge/已满-104748341-blue.svg)](https://jq.qq.com/?_wv=1027&k=96Dkdq0k) [![加入QQ群](https://img.shields.io/badge/已满-160110482-blue.svg)](https://jq.qq.com/?_wv=1027&k=0fsNiYZt) [![加入QQ群](https://img.shields.io/badge/已满-170801498-blue.svg)](https://jq.qq.com/?_wv=1027&k=7xw4xUG1) [![加入QQ群](https://img.shields.io/badge/已满-108482800-blue.svg)](https://jq.qq.com/?_wv=1027&k=eCx8eyoJ) [![加入QQ群](https://img.shields.io/badge/已满-101046199-blue.svg)](https://jq.qq.com/?_wv=1027&k=SpyH2875) [![加入QQ群](https://img.shields.io/badge/已满-136919097-blue.svg)](https://jq.qq.com/?_wv=1027&k=tKEt51dz) [![加入QQ群](https://img.shields.io/badge/已满-143961921-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=0vBbSb0ztbBgVtn3kJS-Q4HUNYwip89G&authKey=8irq5PhutrZmWIvsUsklBxhj57l%2F1nOZqjzigkXZVoZE451GG4JHPOqW7AW6cf0T&noverify=0&group_code=143961921) [![加入QQ群](https://img.shields.io/badge/已满-174951577-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=ZFAPAbp09S2ltvwrJzp7wGlbopsc0rwi&authKey=HB2cxpxP2yspk%2Bo3WKTBfktRCccVkU26cgi5B16u0KcAYrVu7sBaE7XSEqmMdFQp&noverify=0&group_code=174951577) [![加入QQ群](https://img.shields.io/badge/已满-161281055-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=Fn2aF5IHpwsy8j6VlalNJK6qbwFLFHat&authKey=uyIT%2B97x2AXj3odyXpsSpVaPMC%2Bidw0LxG5MAtEqlrcBcWJUA%2FeS43rsF1Tg7IRJ&noverify=0&group_code=161281055) [![加入QQ群](https://img.shields.io/badge/已满-138988063-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=XIzkm_mV2xTsUtFxo63bmicYoDBA6Ifm&authKey=dDW%2F4qsmw3x9govoZY9w%2FoWAoC4wbHqGal%2BbqLzoS6VBarU8EBptIgPKN%2FviyC8j&noverify=0&group_code=138988063) [![加入QQ群](https://img.shields.io/badge/已满-151450850-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=DkugnCg68PevlycJSKSwjhFqfIgrWWwR&authKey=pR1Pa5lPIeGF%2FFtIk6d%2FGB5qFi0EdvyErtpQXULzo03zbhopBHLWcuqdpwY241R%2F&noverify=0&group_code=151450850) [![加入QQ群](https://img.shields.io/badge/已满-224622315-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=F58bgRa-Dp-rsQJThiJqIYv8t4-lWfXh&authKey=UmUs4CVG5OPA1whvsa4uSespOvyd8%2FAr9olEGaWAfdLmfKQk%2FVBp2YU3u2xXXt76&noverify=0&group_code=224622315) [![加入QQ群](https://img.shields.io/badge/已满-287842588-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=Nxb2EQ5qozWa218Wbs7zgBnjLSNk_tVT&authKey=obBKXj6SBKgrFTJZx0AqQnIYbNOvBB2kmgwWvGhzxR67RoRr84%2Bus5OadzMcdJl5&noverify=0&group_code=287842588) [![加入QQ群](https://img.shields.io/badge/已满-187944233-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=numtK1M_I4eVd2Gvg8qtbuL8JgX42qNh&authKey=giV9XWMaFZTY%2FqPlmWbkB9g3fi0Ev5CwEtT9Tgei0oUlFFCQLDp4ozWRiVIzubIm&noverify=0&group_code=187944233) [![加入QQ群](https://img.shields.io/badge/已满-228578329-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=G6r5KGCaa3pqdbUSXNIgYloyb8e0_L0D&authKey=4w8tF1eGW7%2FedWn%2FHAypQksdrML%2BDHolQSx7094Agm7Luakj9EbfPnSTxSi2T1LQ&noverify=0&group_code=228578329) [![加入QQ群](https://img.shields.io/badge/191164766-blue.svg)](http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=GsOo-OLz53J8y_9TPoO6XXSGNRTgbFxA&authKey=R7Uy%2Feq%2BZsoKNqHvRKhiXpypW7DAogoWapOawUGHokJSBIBIre2%2FoiAZeZBSLuBc&noverify=0&group_code=191164766) 点击按钮入群。
+### API接口
+
+```javascript
+// 发送消息
+POST /chat/message/send
+{
+  "roomId": 1,
+  "content": "Hello World",
+  "messageType": 1
+}
+
+// 获取聊天记录
+GET /chat/message/history?roomId=1&pageNum=1&pageSize=20
+
+// 创建聊天室
+POST /chat/room/create
+{
+  "roomName": "技术讨论群",
+  "roomType": 2,
+  "memberIds": [1, 2, 3]
+}
+```
+
+### WebSocket连接
+
+```javascript
+// 建立WebSocket连接
+const ws = new WebSocket('ws://localhost:8080/websocket/chat?token=' + token);
+
+// 消息处理
+ws.onmessage = function(event) {
+  const message = JSON.parse(event.data);
+  // 处理接收到的消息
+};
+
+// 发送消息
+ws.send(JSON.stringify({
+  type: 'CHAT_MESSAGE',
+  data: {
+    roomId: 1,
+    content: 'Hello'
+  }
+}));
+```
+
+## 贡献指南
+
+欢迎提交 Issue 和 Pull Request 来完善项目。
+
+1. Fork 本项目
+2. 创建特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
+5. 创建 Pull Request
+
+## 许可证
+
+本项目基于 MIT 许可证开源，详情请参阅 [LICENSE](LICENSE) 文件。
+
+## 致谢
+
+感谢 [RuoYi](https://gitee.com/y_project/RuoYi-Vue) 项目提供的优秀基础框架。
+
+## 联系我们
+
+- 项目地址：https://github.com/your-username/RuoYi-Chat
+- 问题反馈：https://github.com/your-username/RuoYi-Chat/issues
+- 技术交流QQ群：待建立
+
+---
+
+⭐ 如果这个项目对您有帮助，请给我们一个 Star！
