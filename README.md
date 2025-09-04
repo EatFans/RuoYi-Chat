@@ -215,8 +215,8 @@ ws.send(JSON.stringify({
 
 ## 联系我们
 
-- 项目地址：https://github.com/your-username/RuoYi-Chat
-- 问题反馈：https://github.com/your-username/RuoYi-Chat/issues
+- 项目地址：https://github.com/EatFans/RuoYi-Chat
+- 问题反馈：https://github.com/EatFans/RuoYi-Chat/issues
 - 技术交流QQ群：待建立
 
 ---
