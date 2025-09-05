@@ -41,8 +41,11 @@ public class ChatConnectionManager {
      * 添加用户连接
      */
     public void addConnection(Long userId, Channel channel) {
-        // 移除旧连接
-        removeConnection(userId);
+        // 检查是否有旧连接，如果有且不是当前连接则移除
+        Channel oldChannel = userChannels.get(userId);
+        if (oldChannel != null && !oldChannel.id().equals(channel.id())) {
+            removeConnection(userId);
+        }
         
         userChannels.put(userId, channel);
         channelUsers.put(channel.id().asShortText(), userId);
