@@ -57,4 +57,15 @@
         LIMIT 1
     </select>
 
+    <!-- 插入会话 -->
+    <insert id="insert" parameterType="com.ruoyi.chat.domain.entity.ChatSession">
+        INSERT INTO chat_session (
+            session_id, session_type, session_name, session_avatar, 
+            creator_id, max_members, status, create_time, update_time
+        ) VALUES (
+            #{sessionId}, #{sessionType}, #{sessionName}, #{sessionAvatar},
+            #{creatorId}, #{maxMembers}, #{status}, #{createTime}, #{updateTime}
+        )
+    </insert>
+
 </mapper>

@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -168,7 +169,7 @@ public class MessageRouter {
             notification.setType(MessageType.SYSTEM_NOTICE);
             notification.setContent(content);
             notification.setFromUserId(0L); // 系统消息
-            notification.setTimestamp(java.time.LocalDateTime.now());
+            notification.setTimestamp(new Date());
             
             // 发送给所有成员
             Set<Long> memberIds = members.stream()
@@ -200,8 +201,9 @@ public class MessageRouter {
             ChatMessage statusNotification = new ChatMessage();
             statusNotification.setType("online".equals(status) ? MessageType.USER_ONLINE : MessageType.USER_OFFLINE);
             statusNotification.setFromUserId(userId);
+
             statusNotification.setContent(status);
-            statusNotification.setTimestamp(java.time.LocalDateTime.now());
+            statusNotification.setTimestamp(new Date());
             
             // 广播给所有在线用户
             int successCount = connectionManager.broadcastMessage(statusNotification);

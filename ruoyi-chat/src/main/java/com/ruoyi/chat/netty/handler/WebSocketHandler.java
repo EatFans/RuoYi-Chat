@@ -17,6 +17,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
  * WebSocket消息处理器
  *
@@ -127,7 +129,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<WebSocketFrame
             ChatMessage authResponse = new ChatMessage();
             authResponse.setType(MessageType.AUTH_SUCCESS);
             authResponse.setContent("认证成功");
-            authResponse.setTimestamp(java.time.LocalDateTime.now());
+            authResponse.setTimestamp(new Date());
             
             ctx.channel().writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(authResponse)));
             
@@ -166,7 +168,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<WebSocketFrame
             
             // 设置消息发送者信息
             message.setFromUserId(userId);
-            message.setTimestamp(java.time.LocalDateTime.now());
+            message.setTimestamp(new Date());
             
             // 生成消息ID
             if (message.getMessageId() == null) {
@@ -189,7 +191,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<WebSocketFrame
             ChatMessage ackMessage = new ChatMessage();
             ackMessage.setType(MessageType.AUTH_SUCCESS);
             ackMessage.setMessageId(message.getMessageId());
-            ackMessage.setTimestamp(java.time.LocalDateTime.now());
+            ackMessage.setTimestamp(new Date());
             
             ctx.channel().writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(ackMessage)));
             
@@ -207,7 +209,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<WebSocketFrame
         // 发送心跳响应
         ChatMessage heartbeatResponse = new ChatMessage();
         heartbeatResponse.setType(MessageType.HEARTBEAT_RESPONSE);
-        heartbeatResponse.setTimestamp(java.time.LocalDateTime.now());
+        heartbeatResponse.setTimestamp(new Date());
         
         ctx.channel().writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(heartbeatResponse)));
     }
@@ -219,7 +221,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<WebSocketFrame
         ChatMessage errorResponse = new ChatMessage();
         errorResponse.setType(MessageType.ERROR);
         errorResponse.setContent(errorMessage);
-        errorResponse.setTimestamp(java.time.LocalDateTime.now());
+        errorResponse.setTimestamp(new Date());
         
         ctx.channel().writeAndFlush(new TextWebSocketFrame(JSON.toJSONString(errorResponse)));
     }

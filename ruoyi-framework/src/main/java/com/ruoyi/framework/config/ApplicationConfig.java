@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilde
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 /**
  * 程序注解配置
@@ -20,11 +21,15 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 public class ApplicationConfig
 {
     /**
-     * 时区配置
+     * 时区配置和JSR310模块配置
      */
     @Bean
     public Jackson2ObjectMapperBuilderCustomizer jacksonObjectMapperCustomization()
     {
-        return jacksonObjectMapperBuilder -> jacksonObjectMapperBuilder.timeZone(TimeZone.getDefault());
+        return jacksonObjectMapperBuilder -> {
+            jacksonObjectMapperBuilder.timeZone(TimeZone.getDefault());
+            // 添加JSR310模块支持Java 8时间类型
+            jacksonObjectMapperBuilder.modules(new JavaTimeModule());
+        };
     }
 }

@@ -51,7 +51,8 @@ public class ChatChannelHandler extends SimpleChannelInboundHandler<TextWebSocke
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Long userId = ctx.channel().attr(USER_ID_KEY).get();
         if (userId != null) {
-            connectionManager.removeConnection(userId);
+            // 使用channel移除连接，避免移除用户的新连接
+            connectionManager.removeConnection(ctx.channel());
             // 发送用户下线通知
             broadcastUserStatus(userId, MessageType.USER_OFFLINE);
         }
@@ -188,6 +189,9 @@ public class ChatChannelHandler extends SimpleChannelInboundHandler<TextWebSocke
         if (toChannel != null && toChannel.isActive()) {
             sendMessage(toChannel, message);
         }
+        
+        // 发送确认消息给发送者（让发送者也能看到自己发送的消息）
+        sendMessage(ctx, message);
 
         logger.info("私聊消息：{} -> {}", fromUserId, toUserId);
     }

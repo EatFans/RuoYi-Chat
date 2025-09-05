@@ -3,7 +3,7 @@ package com.ruoyi.chat.protocol;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 /**
  * 聊天消息协议
@@ -41,15 +41,15 @@ public class ChatMessage {
     private String messageId;
     
     /** 时间戳 */
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime timestamp;
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "UTC")
+    private Date timestamp;
     
     /** 额外数据 */
     private Object extra;
 
     // 构造函数
     public ChatMessage() {
-        this.timestamp = LocalDateTime.now();
+        this.timestamp = new Date();
     }
 
     public ChatMessage(MessageType type) {
@@ -130,11 +130,11 @@ public class ChatMessage {
         this.messageId = messageId;
     }
 
-    public LocalDateTime getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
     }
 

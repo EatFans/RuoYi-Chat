@@ -71,6 +71,26 @@
         LIMIT 1
     </select>
 
+    <!-- 插入单条消息 -->
+    <insert id="insert" parameterType="com.ruoyi.chat.domain.entity.ChatMessage" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO chat_message (
+            message_id, session_id, from_user_id, from_user_nickname, from_user_avatar,
+            message_type, content, extra_data, reply_to_message_id, status, create_time
+        ) VALUES (
+            #{messageId},
+            #{sessionId},
+            #{fromUserId},
+            #{fromUserNickname},
+            #{fromUserAvatar},
+            #{messageType},
+            #{content},
+            #{extraData},
+            #{replyToMessageId},
+            #{status},
+            #{createTime}
+        )
+    </insert>
+
     <!-- 批量插入消息 -->
     <insert id="batchInsertMessages" parameterType="java.util.List">
         INSERT INTO chat_message (

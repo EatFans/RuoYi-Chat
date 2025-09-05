@@ -15,7 +15,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -208,6 +210,6 @@ public class ChatMessageService implements IChatMessageService {
                 .setContent(protocolMessage.getContent())
                 .setExtraData(protocolMessage.getExtraData() != null ? protocolMessage.getExtraData().toString() : null)
                 .setStatus(ChatMessage.Status.NORMAL)
-                .setCreateTime(protocolMessage.getTimestamp());
+                .setCreateTime(protocolMessage.getTimestamp().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime());
     }
 }
