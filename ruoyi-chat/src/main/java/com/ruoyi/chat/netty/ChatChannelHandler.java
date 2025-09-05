@@ -172,6 +172,9 @@ public class ChatChannelHandler extends SimpleChannelInboundHandler<TextWebSocke
         Long fromUserId = ctx.channel().attr(USER_ID_KEY).get();
         Long toUserId = message.getToUserId();
         
+        // 添加调试日志
+        logger.debug("处理私聊消息 - fromUserId: {}, toUserId: {}, 原始消息: {}", fromUserId, toUserId, message);
+        
         if (toUserId == null) {
             sendErrorMessage(ctx, "接收者ID不能为空");
             return;
@@ -180,6 +183,9 @@ public class ChatChannelHandler extends SimpleChannelInboundHandler<TextWebSocke
         // 设置消息ID和发送者
         message.setMessageId(UUID.randomUUID().toString());
         message.setFromUserId(fromUserId);
+        
+        // 再次确认toUserId没有被意外修改
+        logger.debug("保存前确认 - fromUserId: {}, toUserId: {}", message.getFromUserId(), message.getToUserId());
 
         // 保存消息到数据库
         chatMessageService.savePrivateMessage(message);
@@ -188,10 +194,25 @@ public class ChatChannelHandler extends SimpleChannelInboundHandler<TextWebSocke
         io.netty.channel.Channel toChannel = connectionManager.getUserChannel(toUserId);
         if (toChannel != null && toChannel.isActive()) {
             sendMessage(toChannel, message);
+            logger.debug("消息已发送给接收者: {}", toUserId);
+        } else {
+            logger.debug("接收者 {} 不在线，消息未发送", toUserId);
         }
         
-        // 发送确认消息给发送者（让发送者也能看到自己发送的消息）
-        sendMessage(ctx, message);
+        // 创建一个新的消息对象发送给发送者，避免修改原消息
+        ChatMessage senderMessage = new ChatMessage();
+        senderMessage.setType(message.getType());
+        senderMessage.setMessageId(message.getMessageId());
+        senderMessage.setSessionId(message.getSessionId());
+        senderMessage.setFromUserId(message.getFromUserId());
+        senderMessage.setToUserId(message.getToUserId());
+        senderMessage.setContent(message.getContent());
+        senderMessage.setContentType(message.getContentType());
+        senderMessage.setTimestamp(message.getTimestamp());
+        senderMessage.setExtra(message.getExtra());
+        
+        sendMessage(ctx, senderMessage);
+        logger.debug("确认消息已发送给发送者: {}", fromUserId);
 
         logger.info("私聊消息：{} -> {}", fromUserId, toUserId);
     }
