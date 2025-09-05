@@ -19,6 +19,12 @@ public class ChatMessage {
     /** 发送者ID */
     private Long fromUserId;
     
+    /** 发送者昵称 */
+    private String fromUserNickname;
+    
+    /** 发送者头像 */
+    private String fromUserAvatar;
+    
     /** 接收者ID（单聊时使用） */
     private Long toUserId;
     
@@ -66,6 +72,22 @@ public class ChatMessage {
 
     public void setFromUserId(Long fromUserId) {
         this.fromUserId = fromUserId;
+    }
+
+    public String getFromUserNickname() {
+        return fromUserNickname;
+    }
+
+    public void setFromUserNickname(String fromUserNickname) {
+        this.fromUserNickname = fromUserNickname;
+    }
+
+    public String getFromUserAvatar() {
+        return fromUserAvatar;
+    }
+
+    public void setFromUserAvatar(String fromUserAvatar) {
+        this.fromUserAvatar = fromUserAvatar;
     }
 
     public Long getToUserId() {
@@ -122,5 +144,19 @@ public class ChatMessage {
 
     public void setExtra(Object extra) {
         this.extra = extra;
+    }
+
+    /**
+     * 获取额外数据（别名方法，与getExtra()功能相同）
+     */
+    public Object getExtraData() {
+        return extra;
+    }
+
+    /**
+     * 设置额外数据（别名方法，与setExtra()功能相同）
+     */
+    public void setExtraData(Object extraData) {
+        this.extra = extraData;
     }
 }

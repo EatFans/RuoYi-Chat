@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.chat.mapper.ChatSessionMemberMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.chat.domain.entity.ChatSessionMember">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="session_id" property="sessionId" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="user_nickname" property="userNickname" jdbcType="VARCHAR"/>
+        <result column="user_avatar" property="userAvatar" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="TINYINT"/>
+        <result column="join_time" property="joinTime" jdbcType="TIMESTAMP"/>
+        <result column="last_read_time" property="lastReadTime" jdbcType="TIMESTAMP"/>
+        <result column="is_muted" property="isMuted" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+    </resultMap>
+
+    <!-- 根据会话ID查询成员列表 -->
+    <select id="selectMembersBySessionId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT *
+        FROM chat_session_member
+        WHERE session_id = #{sessionId}
+          AND status = 1
+        ORDER BY role DESC, join_time ASC
+    </select>
+
+    <!-- 根据会话ID和用户ID查询成员信息 -->
+    <select id="selectMemberBySessionIdAndUserId" resultMap="BaseResultMap">
+        SELECT *
+        FROM chat_session_member
+        WHERE session_id = #{sessionId}
+          AND user_id = #{userId}
+          AND status = 1
+    </select>
+
+    <!-- 根据用户ID查询所有会话成员记录 -->
+    <select id="selectMembersByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        SELECT *
+        FROM chat_session_member
+        WHERE user_id = #{userId}
+          AND status = 1
+        ORDER BY join_time DESC
+    </select>
+
+    <!-- 批量插入会话成员 -->
+    <insert id="insertBatchMembers" parameterType="java.util.List">
+        INSERT INTO chat_session_member (
+            session_id, user_id, user_nickname, user_avatar, role, join_time, status
+        ) VALUES
+        <foreach collection="list" item="member" separator=",">
+            (
+                #{member.sessionId},
+                #{member.userId},
+                #{member.userNickname},
+                #{member.userAvatar},
+                #{member.role},
+                #{member.joinTime},
+                #{member.status}
+            )
+        </foreach>
+    </insert>
+
+    <!-- 更新最后阅读时间 -->
+    <update id="updateLastReadTime">
+        UPDATE chat_session_member
+        SET last_read_time = #{lastReadTime}
+        WHERE session_id = #{sessionId}
+          AND user_id = #{userId}
+          AND status = 1
+    </update>
+
+</mapper>

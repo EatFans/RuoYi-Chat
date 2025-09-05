@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.chat.mapper.ChatMessageMapper">
+
+    <resultMap id="BaseResultMap" type="com.ruoyi.chat.domain.entity.ChatMessage">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="message_id" property="messageId" jdbcType="VARCHAR"/>
+        <result column="session_id" property="sessionId" jdbcType="VARCHAR"/>
+        <result column="from_user_id" property="fromUserId" jdbcType="BIGINT"/>
+        <result column="from_user_nickname" property="fromUserNickname" jdbcType="VARCHAR"/>
+        <result column="from_user_avatar" property="fromUserAvatar" jdbcType="VARCHAR"/>
+        <result column="message_type" property="messageType" jdbcType="TINYINT"/>
+        <result column="content" property="content" jdbcType="LONGVARCHAR"/>
+        <result column="extra_data" property="extraData" jdbcType="LONGVARCHAR"/>
+        <result column="reply_to_message_id" property="replyToMessageId" jdbcType="VARCHAR"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!-- 分页查询会话消息 -->
+    <select id="selectMessagesBySessionId" resultMap="BaseResultMap">
+        SELECT *
+        FROM chat_message
+        WHERE session_id = #{sessionId}
+          AND status = 0
+        ORDER BY create_time DESC
+    </select>
+
+    <!-- 查询会话最新消息 -->
+    <select id="selectLatestMessagesBySessionId" resultMap="BaseResultMap">
+        SELECT *
+        FROM chat_message
+        WHERE session_id = #{sessionId}
+          AND status = 0
+        ORDER BY create_time DESC
+        LIMIT #{limit}
+    </select>
+
+    <!-- 查询指定时间之后的消息 -->
+    <select id="selectMessagesAfterTime" resultMap="BaseResultMap">
+        SELECT *
+        FROM chat_message
+        WHERE session_id = #{sessionId}
+          AND create_time > #{afterTime}
+          AND status = 0
+        ORDER BY create_time ASC
+    </select>
+
+    <!-- 查询未读消息数量 -->
+    <select id="selectUnreadMessageCount" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM chat_message m
+        WHERE m.session_id = #{sessionId}
+          AND m.from_user_id != #{userId}
+          AND m.status = 0
+          AND NOT EXISTS (
+              SELECT 1
+              FROM chat_message_read r
+              WHERE r.message_id = m.message_id
+                AND r.user_id = #{userId}
+          )
+    </select>
+
+    <!-- 查询会话最后一条消息 -->
+    <select id="selectLastMessageBySessionId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        SELECT *
+        FROM chat_message
+        WHERE session_id = #{sessionId}
+          AND status = 0
+        ORDER BY create_time DESC
+        LIMIT 1
+    </select>
+
+    <!-- 批量插入消息 -->
+    <insert id="batchInsertMessages" parameterType="java.util.List">
+        INSERT INTO chat_message (
+            message_id, session_id, from_user_id, from_user_nickname, from_user_avatar,
+            message_type, content, extra_data, reply_to_message_id, status, create_time
+        ) VALUES
+        <foreach collection="list" item="message" separator=",">
+            (
+                #{message.messageId},
+                #{message.sessionId},
+                #{message.fromUserId},
+                #{message.fromUserNickname},
+                #{message.fromUserAvatar},
+                #{message.messageType},
+                #{message.content},
+                #{message.extraData},
+                #{message.replyToMessageId},
+                #{message.status},
+                #{message.createTime}
+            )
+        </foreach>
+    </insert>
+
+</mapper>
