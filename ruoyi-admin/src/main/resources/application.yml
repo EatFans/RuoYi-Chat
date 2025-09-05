@@ -20,10 +20,7 @@ chat:
     port: 9999
     boss-threads: 1
     worker-threads: 8
-    max-frame-size: 65536
-  message:
-    max-content-length: 10240
-    history-limit: 100
+    websocket-path: /ws
 
 # 开发环境配置
 server:
